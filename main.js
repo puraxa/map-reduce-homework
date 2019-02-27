@@ -28,9 +28,11 @@ let countActiveUsers = (acc, val) => {
 }
 // adds halfYearPrice to users
 let halfYearPrice = (element) => {
-  let newObj = {};
-  newObj.name = element.name;
-  newObj.subscription = element.subscription;
+  let newObj = {
+    name: element.name,
+    subscription: element.subscription,
+    halfYearPrice: null,
+  };
   for(let i = 0; i < groups.length; i++){
     if(element.subscription == groups[i].name){
       newObj.halfYearPrice=groups[i].price*6-(groups[i].price*6*groups[i].halfYearDiscountPercentage/100);
@@ -43,8 +45,8 @@ let avgMonth = groups.reduce(avgMonthReduce,0);
 let avgMonthPerUser = avgMonth / users.reduce(countActiveUsers,0);
 
 
-console.log(avgMonth);
-console.log(avgMonthPerUser);
+console.log('Prosjecna mjesecna zarada iznosi ' + avgMonth);
+console.log('Prosjecna mjesecna zarada po korisniku iznosi ' + avgMonthPerUser);
 
 users = users.map(halfYearPrice);
 console.log(users);
