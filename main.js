@@ -11,22 +11,15 @@ let users = [
   { name: 'aladin', subscription: null }
  ];
 
-const avgMonth = (u, g) => {
-  let res = 0;
-  for(let i = 0 ; i < u.length; i++){
-    for(let k = 0; k < g.length; k++){
-      if(u[i].subscription == g[k].name){
-        res += g[k].price;
-        break;
-      }
+let avgMonthReduce = (acc, val) => {
+  for(let i = 0; i < users.length; i++){
+    if(val.name == users[i].subscription){
+      acc += val.price;
     }
   }
-  return res;
-}
+  return acc;
+} 
 
-const avgMonthPerUser = (u,g,avgM) => {
-  return avgM(u,g)/u.length;
-}
+let avgMonth = groups.reduce(avgMonthReduce,0);
 
-console.log(avgMonth(users,groups));
-console.log(avgMonthPerUser(users,groups,avgMonth));
+console.log(avgMonth);
