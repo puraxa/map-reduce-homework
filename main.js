@@ -19,7 +19,7 @@ let avgMonthReduce = (acc, val) => {
   }
   return acc;
 } 
-
+// count only users that have subscription
 let countActiveUsers = (acc, val) => {
   if(val.subscription != null){
     acc++;
@@ -27,8 +27,24 @@ let countActiveUsers = (acc, val) => {
   return acc;
 }
 
+let HalfYearPrice = (element) => {
+  let newObj = {};
+  newObj.name = element.name;
+  newObj.subscription = element.subscription;
+  for(let i = 0; i < groups.length; i++){
+    if(element.subscription == groups[i].name){
+      newObj.HalfYearPrice=groups[i].price*6-(groups[i].price*6*groups[i].halfYearDiscountPercentage/100);
+    }
+  }
+  return newObj;
+}
+
 let avgMonth = groups.reduce(avgMonthReduce,0);
 let avgMonthPerUser = avgMonth / users.reduce(countActiveUsers,0);
 
+
 console.log(avgMonth);
 console.log(avgMonthPerUser);
+
+users = users.map(HalfYearPrice);
+console.log(users);
