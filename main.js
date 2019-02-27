@@ -10,7 +10,7 @@ let users = [
   { name: 'mersad', subscription: 'giga' },
   { name: 'aladin', subscription: null }
  ];
-
+// average monthly income
 let avgMonthReduce = (acc, val) => {
   for(let i = 0; i < users.length; i++){
     if(val.name == users[i].subscription){
@@ -20,6 +20,15 @@ let avgMonthReduce = (acc, val) => {
   return acc;
 } 
 
+let countActiveUsers = (acc, val) => {
+  if(val.subscription != null){
+    acc++;
+  }
+  return acc;
+}
+
 let avgMonth = groups.reduce(avgMonthReduce,0);
+let avgMonthPerUser = avgMonth / users.reduce(countActiveUsers,0);
 
 console.log(avgMonth);
+console.log(avgMonthPerUser);
