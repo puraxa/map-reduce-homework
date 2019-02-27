@@ -27,7 +27,7 @@ let countActiveUsers = (acc, val) => {
   return acc;
 }
 // adds halfYearPrice to users
-let HalfYearPrice = (element) => {
+let halfYearPrice = (element) => {
   let newObj = {};
   newObj.name = element.name;
   newObj.subscription = element.subscription;
@@ -46,5 +46,5 @@ let avgMonthPerUser = avgMonth / users.reduce(countActiveUsers,0);
 console.log(avgMonth);
 console.log(avgMonthPerUser);
 
-users = users.map(HalfYearPrice);
+users = users.map(halfYearPrice);
 console.log(users);
