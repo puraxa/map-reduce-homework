@@ -26,14 +26,14 @@ let countActiveUsers = (acc, val) => {
   }
   return acc;
 }
-
+// adds halfYearPrice to users
 let HalfYearPrice = (element) => {
   let newObj = {};
   newObj.name = element.name;
   newObj.subscription = element.subscription;
   for(let i = 0; i < groups.length; i++){
     if(element.subscription == groups[i].name){
-      newObj.HalfYearPrice=groups[i].price*6-(groups[i].price*6*groups[i].halfYearDiscountPercentage/100);
+      newObj.halfYearPrice=groups[i].price*6-(groups[i].price*6*groups[i].halfYearDiscountPercentage/100);
     }
   }
   return newObj;
