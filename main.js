@@ -59,14 +59,14 @@ console.log(avgMonthPerUser);
 let transDisc = groups.reduce((acc,element) => {
   acc[element.name] = {};
   acc[element.name]['price'] = element.price;
-  acc[element.name]['discount'] = element.discount;
+  acc[element.name]['discount'] = element.halfYearDiscountPercentage;
   return acc;
 },{});
 
 console.log(transDisc);
 
 let halfYearPrice = (element) => {
-  element.halfYearPrice = element.subscription!=null ? transDisc[element.subscription].price: null;
+  element.halfYearPrice = element.subscription!=null ? 6*transDisc[element.subscription].price-(6*transDisc[element.subscription].price*(transDisc[element.subscription].discount/100)): null;
   return element;
 }
 
