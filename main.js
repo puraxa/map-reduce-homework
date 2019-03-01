@@ -67,7 +67,7 @@ let transDisc = groups.reduce((acc,element) => {
 console.log(transDisc);
 //calculates halfYearPrice
 let halfYearPrice = (element) => {
-  let discountPrice = element.subscription ? 6*transDisc[element.subscription].price-(6*transDisc[element.subscription].price*(transDisc[element.subscription].discount/100)) : null;
+  let discountPrice = element.subscription ? 6*transDisc[element.subscription].price-(6*transDisc[element.subscription].price*(transDisc[element.subscription].discount/100)) : 0;
   element.halfYearPrice = discountPrice;
   return element;
 }
