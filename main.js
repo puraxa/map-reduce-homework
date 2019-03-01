@@ -56,6 +56,16 @@ let avgMonthPerUser = avgMonth / users.reduce((counter, user) => counter += user
 
 console.log(avgMonthPerUser);
 
+let transDisc = groups.map((element) => {
+  let newObj = {};
+  newObj[element.name] = {};
+  newObj[element.name]['price'] = element.price;
+  newObj[element.name]['discount'] = element.halfYearDiscountPercentage;
+  return newObj;
+});
+
+console.log(transDisc);
+
 let halfYearPrice = (element) => {
   for (let i = 0; i < groups.length; i++) {
     element.halfYearPrice = element.subscription == groups[i].name ? groups[i].price * 6 - (groups[i].price * 6 * groups[i].halfYearDiscountPercentage / 100) : null;
