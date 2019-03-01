@@ -40,7 +40,7 @@ let users = [{
     subscription: null
   }
 ];
-
+//transforms groups to key/value pairs
 let transformed = groups.reduce((result, group) => {
   result[group.name] = group.price;
   return result;
@@ -48,14 +48,14 @@ let transformed = groups.reduce((result, group) => {
 
 console.log(transformed);
 
-let avgMonth = users.reduce((total, subs) => total += subs.subscription != null ? transformed[subs.subscription] : 0, 0)
+let MonthlyIncome = users.reduce((total, subs) => total += subs.subscription != null ? transformed[subs.subscription] : 0, 0)
 
-console.log(avgMonth);
+console.log(MonthlyIncome);
 
 let avgMonthPerUser = avgMonth / users.reduce((counter, user) => counter += user.subscription != null ? 1 : 0, 0);
 
 console.log(avgMonthPerUser);
-
+// trabsform groups so i can access discount without loops
 let transDisc = groups.reduce((acc,element) => {
   acc[element.name] = {};
   acc[element.name]['price'] = element.price;
@@ -64,7 +64,7 @@ let transDisc = groups.reduce((acc,element) => {
 },{});
 
 console.log(transDisc);
-
+//calculates halfYearPrice
 let halfYearPrice = (element) => {
   element.halfYearPrice = element.subscription!=null ? 6*transDisc[element.subscription].price-(6*transDisc[element.subscription].price*(transDisc[element.subscription].discount/100)): null;
   return element;
