@@ -52,7 +52,7 @@ let MonthlyIncome = users.reduce((total, subs) => total += subs.subscription != 
 
 console.log(MonthlyIncome);
 
-let avgMonthPerUser = avgMonth / users.reduce((counter, user) => counter += user.subscription != null ? 1 : 0, 0);
+let avgMonthPerUser = MonthlyIncome / users.reduce((counter, user) => counter += user.subscription != null ? 1 : 0, 0);
 
 console.log(avgMonthPerUser);
 // trabsform groups so i can access discount without loops
