@@ -57,9 +57,10 @@ let avgMonthPerUser = MonthlyIncome / users.reduce((counter, user) => counter +=
 console.log(avgMonthPerUser);
 // trabsform groups so i can access discount without loops
 let transDisc = groups.reduce((acc,element) => {
-  acc[element.name] = {};
-  acc[element.name]['price'] = element.price;
-  acc[element.name]['discount'] = element.halfYearDiscountPercentage;
+  acc[element.name] = {
+    price: element.price,
+    discount: element.halfYearDiscountPercentage,
+  };
   return acc;
 },{});
 
